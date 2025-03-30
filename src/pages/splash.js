@@ -1,63 +1,52 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
+import { ButtonOutline, ButtonOutlineText, Container } from "../styles";
 
 export default function Splash() {
 
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
-    const handleLogin = () => {
-        navigation.navigate("Login");
-    }
+  const handleLogin = () => {
+    navigation.navigate("Login");
+  }
 
 
   return (
-    <View style={styles.fundo}>
-    <View style={styles.container}>
-      <Image style={styles.image}
-      source={require("../../assets/logo.png"
-
-      )} />
-    </View>
-    <View>
-    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>EXPLORAR</Text>
-      </TouchableOpacity>    </View>
+      
+      
+    <View style={styles.fundo}> 
+      <Container>
+        <Image style={styles.image}
+          source={require("../../assets/logo.png")} />
+      </Container>
+      <View style={styles.containerButton }>
+        <ButtonOutline style={styles.ButtonOutline} onPress={handleLogin}>
+          <ButtonOutlineText style={styles.buttonText}>Explorar</ButtonOutlineText>
+        </ButtonOutline>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    fundo: {
-      flex: 1,
-      backgroundColor: "#394F9A",
-    },
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    image: {
-      marginBottom: 20, 
-    },
-    button: {
-      backgroundColor: "transparent",
-      borderWidth: 2,
-      borderColor: "#FFFBEC",
-      paddingVertical: 5,
-      paddingHorizontal: 20,
-      borderRadius: 8, 
-      alignSelf: "center",
-      maxWidth: 250,
-      marginBottom: 20,
-    },
-    buttonText: {
-      color: "#FFFBEC",
-      fontSize: 20,
-      fontWeight: "bold",
-      textAlign: "center",
-    },
-  });
-     
+  fundo: {
+    flex: 1,
+    backgroundColor: "#394F9A",
+  },
+  containerButton: {
+    alignItems: "center",
+    paddingBottom: 20,
+  },
+  image: {
+    marginBottom: 20,
+  },
+  ButtonOutline: {
+    borderColor: "#FFFBEC",
+  },
+  buttonText: {
+    color: "#FFFBEC",
+  },
+});
 
- 
+

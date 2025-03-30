@@ -1,52 +1,40 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { 
-    ButtonBlue, 
-    ButtonBlueText, 
-    ButtonOutline, 
-    ButtonOutlineText, 
-    Container, 
-    Input, 
-    TittleForm,
-    SubTittleForm
-} from "../styles";
+import { Container, Input, TittleForm, SubTittleForm, ButtonBlue, ButtonBlueText, ButtonOutline, ButtonOutlineText } from "../styles";
 
-export default function Login() {
+export default function Cadastro() {
 
     const navigation = useNavigation();
 
-    const handleMain = () => {
-        navigation.navigate("Main");
+    const handleLogin = () => {
+        navigation.navigate("Login");
     }
 
-    const handleRegister = () => {
-        navigation.navigate("Cadastro");
-    }
-
-    return (
+    return(
         <Container style={styles.fundo}>
             <Image
-
                 source={require("../../assets/logo-a.png")}
             />
             <TittleForm>
-                DA AMEAÇÃO FANTASMA À ASCENSÃO SKYWALKER, A HISTÓRIA TE ESPERA!!!
+            FAÇA SEU CADASTRO E ENTRE NO MUNDO DE STAR WARS!!!
             </TittleForm>
-            <SubTittleForm>Realize Seu Login</SubTittleForm>
+            <SubTittleForm>Realize Seu Cadastro</SubTittleForm>
+            <Input
+                placeholder="Nome"
+            />
             <Input
                 placeholder="Email"
             />
             <Input
                 placeholder="Senha"
                 secureTextEntry={true}
-            />
-
-            <ButtonBlue onPress={handleMain}>
-                <ButtonBlueText>Entrar</ButtonBlueText>
+            /> 
+            <ButtonBlue>
+                <ButtonBlueText>Cadastrar</ButtonBlueText>
             </ButtonBlue>
-            <ButtonOutline style={styles.button} onPress={handleRegister}>
-                <ButtonOutlineText style={styles.textButton}>Cadastrar</ButtonOutlineText>
+            <ButtonOutline style={styles.button} onPress={handleLogin}>
+                <ButtonOutlineText style={styles.textButton}>Voltar</ButtonOutlineText>
             </ButtonOutline>
         </Container>
     );
