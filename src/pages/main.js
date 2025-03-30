@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { 
-  ContainerMain, 
+  ContainerScroll, 
   Tittle,
   Paragraph,
   ButtonOutlineImage, 
@@ -33,8 +32,12 @@ export default function Main() {
     navigation.navigate("Spaceships");
   };
 
+  const handleSpecies = () => {
+    navigation.navigate("Species");
+  };
+
   return (
-    <ContainerMain>
+    <ContainerScroll>
       <Tittle>seja bem-vindo jovem padawan!</Tittle>
       <Paragraph>
         Selecione o que deseja aprender mais sobre o vasto universo de Star Wars.
@@ -60,14 +63,11 @@ export default function Main() {
         <ButtonOutlineImageIcon source={require("../../assets/vader.png")} />
         <TextButtonImage>PERSONAGENS</TextButtonImage>
       </ButtonOutlineImage>
+      <ButtonOutlineImage onPress={handleSpecies}>
+        <ButtonOutlineImageIcon source={require("../../assets/chewbacca.png")} />
+        <TextButtonImage>ESPÉCIES</TextButtonImage>
+      </ButtonOutlineImage>
 
-    </ContainerMain>
+    </ContainerScroll>
   );
 }
-
-const styles = StyleSheet.create({
-
-  paragraph: {
-
-  },
-});

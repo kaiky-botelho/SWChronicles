@@ -1,4 +1,6 @@
 import styled from "styled-components/native";
+import { RectButton } from "react-native-gesture-handler";
+
 
 export const Container = styled.View`
     flex: 1;
@@ -56,7 +58,27 @@ export const Paragraph = styled.Text`
   font-weight: bold;
   color: #2d2d2d;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+`;
+
+export const SmallText = styled.Text`
+  font-size: 10x;
+  color: #2d2d2d;
+  margin-top: 20px;
+`;
+
+export const TextUnderline = styled.Text`
+  font-size: 10px;
+  color: #394F9A;
+  font-weight: bold;
+  text-decoration: underline;
+  `;
+
+export const ContainerScroll = styled.ScrollView`
+  flex: 1;
+  background-color: #FFFBEC;
+  gap: 20px;
+  padding: 20px;
 `;
 
 // Formulario
@@ -70,6 +92,7 @@ export const Input = styled.TextInput.attrs({
     border-color: #394F9A;
     border-width: 2px;
     border-radius: 5px;
+    height: 50px;
     background-color: #FFFDF6;
 `;
 
@@ -88,13 +111,26 @@ export const SubTittleForm = styled.Text`
     font-weight: bold;
 `;
 
-// Main
-export const ContainerMain = styled.View`
-  flex: 1;
-  background-color: #FFFBEC;
-  gap: 20px;
-  padding: 20px;
+export const SubmitButton = styled(RectButton)`
+  justify-content: center;
+  align-items: center;
+  background: #394F9A;
+  border-radius: 4px;
+  margin-left: 10px;
+  padding: 0 12px;
+  height: 50px;
+  opacity: ${(props) => (props.loading ? 0.7 : 1)};
 `;
+
+export const SearchContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  border-color: #ccc;
+  border-radius: 8px;
+`;
+
+// Main
+
 
 export const ButtonOutlineImage = styled.TouchableOpacity`
   flex-direction: row;
@@ -103,7 +139,7 @@ export const ButtonOutlineImage = styled.TouchableOpacity`
   border-color: #394F9A;
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom:40px;
   position: relative;
 `;
 
@@ -121,3 +157,4 @@ export const TextButtonImage = styled.Text`
   font-weight: bold;
   color: #394f9a;
 `;
+
