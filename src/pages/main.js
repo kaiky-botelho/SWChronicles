@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { 
   ContainerScroll, 
@@ -8,8 +8,24 @@ import {
   TextButtonImage, 
   ButtonOutlineImageIcon, 
 } from "../styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Main() {
+
+  const [nome, setNome] = useState(""); // useState importado corretamente
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await AsyncStorage.getItem("user");
+      if (user) {
+        const userJson = JSON.parse(user);
+        setNome(userJson.nome);
+      }
+    };
+
+    getUser();
+  }, []); // hook useEffect funciona corretamente para pegar o nome
+
   const navigation = useNavigation();
 
   const handlePlanets = () => {
@@ -38,7 +54,7 @@ export default function Main() {
 
   return (
     <ContainerScroll>
-      <Tittle>seja bem-vindo jovem padawan!</Tittle>
+      <Tittle>seja bem-vindo, {nome ? nome : "Jovem Padawan"}!</Tittle>
       <Paragraph>
         Selecione o que deseja aprender mais sobre o vasto universo de Star Wars.
       </Paragraph>
@@ -67,7 +83,6 @@ export default function Main() {
         <ButtonOutlineImageIcon source={require("../../assets/chewbacca.png")} />
         <TextButtonImage>ESPÉCIES</TextButtonImage>
       </ButtonOutlineImage>
-
     </ContainerScroll>
   );
 }

@@ -6,6 +6,10 @@ import Login from "./pages/login";
 import Cadastro from "./pages/cadastro";
 import Main from "./pages/main";
 import Planets from "./pages/planets";
+import PlanetsList from "./pages/planetsList";
+import FilmsList from "./pages/filmsList";
+
+import Droids from "./pages/films";
 
 const Stack = createStackNavigator();
 
@@ -53,6 +57,58 @@ export default function Routes() {
       <Stack.Screen
         name="Planets"
         component={Planets}
+        options={{
+          headerTitle: () => (
+            <Image
+              source={require("../assets/logo.png")}
+              style={{ width: 100, height: 40, resizeMode: "contain" }}
+            />
+          ),
+          headerTitleAlign: "center",
+          headerTintColor: "#FFFBEC",
+          headerStyle: {
+            backgroundColor: "#394F9A",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="PlanetsList"
+        component={PlanetsList}
+        options={{
+          headerTitle: () => (
+            <Image
+              source={require("../assets/logo.png")}
+              style={{ width: 100, height: 40, resizeMode: "contain" }}
+            />
+          ),
+          headerTitleAlign: "center",
+          headerTintColor: "#FFFBEC",
+          headerStyle: {
+            backgroundColor: "#394F9A",
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="Droids"
+        component={Droids}
+        options={{
+          headerTitle: () => (
+            <Image
+              source={require("../assets/logo.png")}
+              style={{ width: 100, height: 40, resizeMode: "contain" }}
+            />
+          ),
+          headerTitleAlign: "center",
+          headerTintColor: "#FFFBEC",
+          headerStyle: {
+            backgroundColor: "#394F9A",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="FilmsList"
+        component={FilmsList}
         options={{
           headerTitle: () => (
             <Image

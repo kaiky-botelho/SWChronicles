@@ -4,20 +4,20 @@ import { ContainerScroll, Input, SmallText, TextUnderline, SearchContainer, Subm
 import { useNavigation } from "@react-navigation/native";
 import api from "../service/api";
 
-export default function Planets() {
+export default function films() {
 
   const navigation = useNavigation();
 
 
   const handleList = () => {
-    navigation.navigate("PlanetsList")
+    navigation.navigate("FilmsList")
   }
 
   return (
     <ContainerScroll>
       <SearchContainer>
         <Input
-          placeholder="Adicionar planeta"
+          placeholder="Adicionar Filme"
         />
         <SubmitButton>
           <Icon name="add" size={20} color="#fff" />

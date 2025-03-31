@@ -62,13 +62,14 @@ export const Paragraph = styled.Text`
 `;
 
 export const SmallText = styled.Text`
-  font-size: 10x;
+  font-size: 14px;
   color: #2d2d2d;
+  text-align: center;
   margin-top: 20px;
 `;
 
 export const TextUnderline = styled.Text`
-  font-size: 10px;
+  font-size: 14px;
   color: #394F9A;
   font-weight: bold;
   text-decoration: underline;
@@ -158,3 +159,11 @@ export const TextButtonImage = styled.Text`
   color: #394f9a;
 `;
 
+// Itens Adicionados
+export const ContainerItem = styled.View`
+  align-items: center;
+  margin: 0 20px 30px;
+  border-width: 2px;
+  border-color: #394F9A;
+  padding: 10px;
+`;
