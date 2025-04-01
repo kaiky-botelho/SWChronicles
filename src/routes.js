@@ -7,9 +7,10 @@ import Cadastro from "./pages/cadastro";
 import Main from "./pages/main";
 import Planets from "./pages/planets";
 import PlanetsList from "./pages/planetsList";
+
+import Films from "./pages/films";
 import FilmsList from "./pages/filmsList";
 
-import Droids from "./pages/films";
 
 const Stack = createStackNavigator();
 
@@ -90,8 +91,8 @@ export default function Routes() {
       />
 
       <Stack.Screen
-        name="Droids"
-        component={Droids}
+        name="Films"
+        component={Films}
         options={{
           headerTitle: () => (
             <Image
@@ -106,6 +107,7 @@ export default function Routes() {
           },
         }}
       />
+
       <Stack.Screen
         name="FilmsList"
         component={FilmsList}

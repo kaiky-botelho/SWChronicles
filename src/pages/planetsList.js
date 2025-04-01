@@ -2,49 +2,47 @@ import React from "react";
 import { FlatList, Text, View, Image, StyleSheet } from "react-native";
 import api from "../service/api";
 
-
-export default function PlanetsList() {
-  const [planets, setPlanets] = React.useState([]);
+export default function FilmsList() {
+  const [films, setFilms] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    async function fetchPlanets() {
+    async function fetchFilms() {
       try {
-        const response = await api.get("planets/");
-        setPlanets(response.data.results);
+        const response = await api.get("films/");
+        setFilms(response.data.results);
         setLoading(false);
       } catch (error) {
         console.error(error);
         setLoading(false);
       }
     }
-    fetchPlanets();
+    fetchFilms();
   }, []);
 
   return (
     <View style={styles.container}>
-    {loading ? (
-      // Exibe a imagem de carregamento e o texto abaixo
-      <View style={styles.loadingContainer}>
-        <Image
-          source={require("../../assets/mandalorianoLoadingGif.gif")} // Caminho correto para o GIF local
-          style={styles.loadingGif}
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <Image
+            source={require("../../assets/mandalorianoLoadingGif.gif")}
+            style={styles.loadingGif}
+          />
+          <Text style={styles.loadingText}>Carregando...</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={films}
+          keyExtractor={(item) => item.title}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text style={styles.title}>{item.title}</Text>
+            </View>
+          )}
         />
-        <Text style={styles.loadingText}>Carregando...</Text>
-      </View>
-    ) : (
-      <FlatList
-        data={planets}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.title}>{item.name}</Text>
-          </View>
-        )}
-      />
-    )}
-  </View>
-);
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

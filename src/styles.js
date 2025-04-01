@@ -167,3 +167,51 @@ export const ContainerItem = styled.View`
   border-color: #394F9A;
   padding: 10px;
 `;
+
+export const PlanetInfoContainer = styled.View`
+  flex: 1;
+  padding: 20px;
+  background-color: #FFFBEC;
+  border: 2px solid #394F9A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  max-width: 300px;
+`;
+
+export const PlanetInfoText = styled.Text` 
+  font-size: 18px;
+  color: #394F9A;
+  font-weight: bold;
+  margin-bottom: 10px;
+  align-items: center;
+`;
+export const MovieInfoContainer = styled.View`
+  flex: 1;
+  padding: 20px;
+  background-color: #FFFBEC;
+  border: 2px solid #394F9A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  margin: 10px;
+  max-width: 300px;
+`;
+
+export const MovieInfoText = styled.Text` 
+  font-size: 18px;
+  color: #394F9A;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin: 10px;
+`;
+
+export const FilmeImage = styled.Image`
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+`;

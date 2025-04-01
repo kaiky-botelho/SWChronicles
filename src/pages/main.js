@@ -32,12 +32,8 @@ export default function Main() {
     navigation.navigate("Planets");
   };
 
-  const handleDroids = () => {
-    navigation.navigate("Droids");
-  };
-
   const handleMovies = () => {
-    navigation.navigate("Movies");
+    navigation.navigate("Films");
   };
 
   const handleCharacters = () => {
@@ -66,10 +62,6 @@ export default function Main() {
       <ButtonOutlineImage onPress={handleSpaceships}>
         <ButtonOutlineImageIcon source={require("../../assets/milenium.png")} />
         <TextButtonImage>NAVES</TextButtonImage>
-      </ButtonOutlineImage>
-      <ButtonOutlineImage onPress={handleDroids}>
-        <ButtonOutlineImageIcon source={require("../../assets/c3po.png")} />
-        <TextButtonImage>DROIDS</TextButtonImage>
       </ButtonOutlineImage>
       <ButtonOutlineImage onPress={handleMovies}>
         <ButtonOutlineImageIcon source={require("../../assets/sabre.png")} />
