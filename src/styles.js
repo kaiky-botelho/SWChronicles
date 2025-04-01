@@ -190,28 +190,28 @@ export const PlanetInfoText = styled.Text`
   align-items: center;
 `;
 export const MovieInfoContainer = styled.View`
-  flex: 1;
   padding: 20px;
   background-color: #FFFBEC;
   border: 2px solid #394F9A;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-
   margin: 10px;
-  max-width: 300px;
+  width: 100%;
+  max-width: 350px; 
+  align-self: stretch; 
 `;
+
+
 
 export const MovieInfoText = styled.Text` 
   font-size: 18px;
   color: #394F9A;
   font-weight: bold;
-  margin-bottom: 10px;
-  margin: 10px;
+  margin-bottom: 30px;
 `;
 
 export const FilmeImage = styled.Image`
   width: 100%;
-  height: 400px;
+  max-width: 280px;
+  height: 350px; 
   border-radius: 10px;
 `;

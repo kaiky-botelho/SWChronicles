@@ -26,15 +26,13 @@ const movieImages = {
   "The Force Awakens": require("../../assets/movies/the-force-awakens.jpg"),
   "The Last Jedi": require("../../assets/movies/the-last-jedi.png"),
   "The Rise of Skywalker": require("../../assets/movies/the-rise-of-skywalker.jpg"),
-  "Rogue One": require("../../assets/movies/rogue-one.jpg")
-
+  "Rogue One": require("../../assets/movies/rogue-one.jpg"),
 };
 
 export const Films = () => {
   const navigation = useNavigation();
   const [movieTitle, setMovieTitle] = useState("");
-  const [movieInfo, setMovieInfo] = useState(null);
-  const [movieImage, setMovieImage] = useState(null);
+  const [movieList, setMovieList] = useState([]); // Agora é uma lista
 
   const handleList = () => {
     navigation.navigate("FilmsList");
@@ -42,15 +40,21 @@ export const Films = () => {
 
   const handleSearch = async () => {
     if (!movieTitle.trim()) return;
-    
+
     try {
       const response = await api.get(`/films/?search=${movieTitle}`);
       const movieData = response.data.results[0];
-      
+
       if (movieData) {
         await AsyncStorage.setItem("savedMovie", JSON.stringify(movieData));
-        setMovieInfo(movieData);
-        setMovieImage(movieImages[movieData.title] || require("../../assets/vader.png"));
+
+        const newMovie = {
+          ...movieData,
+          image: movieImages[movieData.title] || require("../../assets/vader.png"),
+        };
+
+        setMovieList((prevMovies) => [...prevMovies, newMovie]); // Adiciona novo filme à lista
+        setMovieTitle(""); // Limpa o campo de busca
       } else {
         alert("Filme não encontrado!");
       }
@@ -72,18 +76,20 @@ export const Films = () => {
           <Icon name="search" size={20} color="#fff" />
         </SubmitButton>
       </SearchContainer>
+
       <SmallText>
         Não sabe qual filme procurar? <TextUnderline onPress={handleList}>Clique aqui</TextUnderline>
       </SmallText>
-      {movieInfo && (
-        <MovieInfoContainer>
-          <FilmeImage source={movieImage} />
-          <MovieInfoText>Título: {movieInfo.title}</MovieInfoText>
-          <MovieInfoText>Diretor: {movieInfo.director}</MovieInfoText>
-          <MovieInfoText>Produtor: {movieInfo.producer}</MovieInfoText>
-          <MovieInfoText>Data de lançamento: {movieInfo.release_date}</MovieInfoText>
+
+      {movieList.map((movie, index) => (
+        <MovieInfoContainer key={index}>
+          <FilmeImage source={movie.image} resizeMode="contain" />
+          <MovieInfoText>Título: {movie.title}</MovieInfoText>
+          <MovieInfoText>Diretor: {movie.director}</MovieInfoText>
+          <MovieInfoText>Produtor: {movie.producer}</MovieInfoText>
+          <MovieInfoText>Data de lançamento: {movie.release_date}</MovieInfoText>
         </MovieInfoContainer>
-      )}
+      ))}
     </ContainerScroll>
   );
 };
