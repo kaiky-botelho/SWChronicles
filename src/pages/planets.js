@@ -20,7 +20,7 @@ const Planets = () => {
   const [planetName, setPlanetName] = useState("");
   const [planetInfo, setPlanetInfo] = useState(null);
 
-  const handleList = () => {
+  const handlePlanetList = () => {
     navigation.navigate("PlanetsList");
   };
 
@@ -56,7 +56,7 @@ const Planets = () => {
         </SubmitButton>
       </SearchContainer>
       <SmallText>
-        Não sabe qual planeta procurar? <TextUnderline onPress={handleList}>Clique aqui</TextUnderline>
+        Não sabe qual planeta procurar? <TextUnderline onPress={handlePlanetList}>Clique aqui</TextUnderline>
       </SmallText>
       {planetInfo && (
         <PlanetInfoContainer>

@@ -31,7 +31,7 @@ export default function FilmsDetails() {
 
                 <FineLine></FineLine>
 
-                <OpeningCrawlTittle>Abertura: </OpeningCrawlTittle> {'\n'}
+                <OpeningCrawlTittle>Abertura </OpeningCrawlTittle> {'\n'}
                 <OpeningCrawlText>{movie.opening_crawl}</OpeningCrawlText>
 
 

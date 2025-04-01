@@ -109,6 +109,23 @@ export default function Routes() {
         }}
       />
       <Stack.Screen
+        name="FilmsList"
+        component={FilmsList}
+        options={{
+          headerTitle: () => (
+            <Image
+              source={require("../assets/logo.png")}
+              style={{ width: 100, height: 40, resizeMode: "contain" }}
+            />
+          ),
+          headerTitleAlign: "center",
+          headerTintColor: "#FFFBEC",
+          headerStyle: {
+            backgroundColor: "#394F9A",
+          },
+        }}
+      />
+      <Stack.Screen
         name="FilmsDetails"
         component={FilmsDetails}
         options={{

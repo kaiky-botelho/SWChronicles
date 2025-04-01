@@ -131,8 +131,6 @@ export const SearchContainer = styled.View`
 `;
 
 // Main
-
-
 export const ButtonOutlineImage = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
@@ -160,35 +158,39 @@ export const TextButtonImage = styled.Text`
 `;
 
 // Itens Adicionados
-// export const ContainerItem = styled.View`
-//   align-items: center;
-//   margin: 0 20px 30px;
-//   border-width: 2px;
-//   border-color: #394F9A;
-//   padding: 10px;
-// `;
+export const ContainerItem = styled.View`
+  align-items: center;
+  margin: 0 20px 30px;
+  border-width: 2px;
+  border-color: #394F9A;
+  padding: 10px;
+  align-self: center;
+  display: flex;
+`;
 
-// export const PlanetInfoContainer = styled.View`
-//   flex: 1;
-//   padding: 20px;
-//   background-color: #FFFBEC;
-//   border: 2px solid #394F9A;
-//   border-radius: 10px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   margin: 10px;
-//   max-width: 300px;
-// `;
+export const PlanetInfoContainer = styled.View`
+  flex: 1;
+  padding: 20px;
+  background-color: #FFFBEC;
+  border: 2px solid #394F9A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  max-width: 300px;
+  align-self: stretch;
+`;
 
-// export const PlanetInfoText = styled.Text` 
-//   font-size: 18px;
-//   color: #394F9A;
-//   font-weight: bold;
-//   margin-bottom: 10px;
-//   align-items: center;
-// `;
+export const PlanetInfoText = styled.Text` 
+  font-size: 18px;
+  color: #394F9A;
+  font-weight: bold;
+  margin-bottom: 10px;
+  align-items: center;
+`;
+
 export const MovieInfoContainer = styled.View`
   padding: 20px;
   background-color: #FFFBEC;
@@ -209,7 +211,7 @@ export const ItemContainerText = styled.View`
   `;
 
 export const ItemTitle = styled.Text` 
-  font-size: 24px;
+  font-size: 32px;
   color: #394F9A;
   font-weight: 900;
   margin-bottom: 10px;

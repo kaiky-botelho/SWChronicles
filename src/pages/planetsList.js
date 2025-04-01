@@ -2,22 +2,22 @@ import React from "react";
 import { FlatList, Text, View, Image, StyleSheet } from "react-native";
 import api from "../service/api";
 
-export default function FilmsList() {
-  const [films, setFilms] = React.useState([]);
+export default function PlanetsList() {
+  const [planets, setPlanets] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    async function fetchFilms() {
+    async function fetchPlanets() {
       try {
-        const response = await api.get("films/");
-        setFilms(response.data.results);
+        const response = await api.get("planets/");
+        setPlanets(response.data.results);
         setLoading(false);
       } catch (error) {
         console.error(error);
         setLoading(false);
       }
     }
-    fetchFilms();
+    fetchPlanets();
   }, []);
 
   return (
@@ -32,11 +32,11 @@ export default function FilmsList() {
         </View>
       ) : (
         <FlatList
-          data={films}
-          keyExtractor={(item) => item.title}
+          data={planets}
+          keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.title}>{item.name}</Text>
             </View>
           )}
         />
@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#394F9A",
     fontWeight: "bold",
+    paddingLeft: 10,
+  },
+  details: {
+    fontSize: 16,
+    color: "#394F9A",
     paddingLeft: 10,
   },
   loadingGif: {

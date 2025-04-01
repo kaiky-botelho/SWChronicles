@@ -27,11 +27,6 @@ const movieImages = {
   "The Phantom Menace": require("../../assets/movies/the-phantom-menace.jpg"),
   "Attack of the Clones": require("../../assets/movies/attack-of-the-clones.jpg"),
   "Revenge of the Sith": require("../../assets/movies/revenge-of-the-sith.jpg"),
-  "The Clone Wars": require("../../assets/movies/the-clone-wars.jpg"),
-  "The Force Awakens": require("../../assets/movies/the-force-awakens.jpg"),
-  "The Last Jedi": require("../../assets/movies/the-last-jedi.png"),
-  "The Rise of Skywalker": require("../../assets/movies/the-rise-of-skywalker.jpg"),
-  "Rogue One": require("../../assets/movies/rogue-one.jpg"),
 };
 
 export const Films = () => {
