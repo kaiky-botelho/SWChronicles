@@ -1,7 +1,7 @@
-import React, { Component } from "react"; // Importando corretamente o Component
+import React, { Component } from "react";
 import { StyleSheet, Image, Text } from "react-native";
 import { Container, Input, TittleForm, SubTittleForm, ButtonBlue, ButtonBlueText, ButtonOutline, ButtonOutlineText } from "../styles";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // Certifique-se de importar o AsyncStorage
+import AsyncStorage from "@react-native-async-storage/async-storage"; 
 
 export default class Cadastro extends Component {
 
@@ -28,9 +28,17 @@ export default class Cadastro extends Component {
             senha,
         };
 
-        await AsyncStorage.setItem("user", JSON.stringify(user)); // Armazenando os dados
+
+        const storedUsers = await AsyncStorage.getItem("users");
+        let users = storedUsers ? JSON.parse(storedUsers) : [];
+
+        users.push(user);
+
+
+        await AsyncStorage.setItem("users", JSON.stringify(users));
+
         alert("Cadastro realizado com sucesso!");
-        this.props.navigation.navigate("Login"); // Navegando de volta para a tela de login
+        this.props.navigation.navigate("Login"); 
     }
 
     render() {

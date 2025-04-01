@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Icon from "@expo/vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import api from "../service/api";  // Importando a API do serviço
+import api from "../service/api"; 
 import {
   ContainerScroll,
   Input,
@@ -20,6 +20,7 @@ import {
   MoreButtonText,
 } from "../styles";
 
+// Mapeando imagens dos filmes
 const movieImages = {
   "A New Hope": require("../../assets/movies/a-new-hope.jpg"),
   "The Empire Strikes Back": require("../../assets/movies/the-empire-strikes-back.jpg"),
@@ -34,6 +35,26 @@ export const Films = () => {
   const [movieTitle, setMovieTitle] = useState("");
   const [movieList, setMovieList] = useState([]);
 
+  // Carregar filmes do usuário logado ao entrar na tela
+  useEffect(() => {
+    const loadMovies = async () => {
+      const loggedInEmail = await AsyncStorage.getItem("loggedInEmail");
+      if (!loggedInEmail) return;
+
+      const users = await AsyncStorage.getItem("users");
+      if (!users) return;
+
+      let usersList = JSON.parse(users);
+      let user = usersList.find((u) => u.email === loggedInEmail);
+
+      if (user && user.movies) {
+        setMovieList(user.movies);
+      }
+    };
+
+    loadMovies();
+  }, []);
+
   const handleList = () => {
     navigation.navigate("FilmsList");
   };
@@ -46,20 +67,49 @@ export const Films = () => {
       const response = await api.get(`/films/?search=${movieTitle}`);
       const movieData = response.data.results[0]; // Pegando o primeiro filme encontrado
 
-      if (movieData) {
-        // Armazenando o filme no AsyncStorage
-        await AsyncStorage.setItem("savedMovie", JSON.stringify(movieData));
-
-        const newMovie = {
-          ...movieData,
-          image: movieImages[movieData.title] || require("../../assets/vader.png"),
-        };
-
-        setMovieList((prevMovies) => [...prevMovies, newMovie]);
-        setMovieTitle(""); // Limpar o campo de busca
-      } else {
+      if (!movieData) {
         alert("Filme não encontrado!");
+        return;
       }
+
+      // Obtendo o usuário logado
+      const loggedInEmail = await AsyncStorage.getItem("loggedInEmail");
+      if (!loggedInEmail) {
+        alert("Nenhum usuário logado!");
+        return;
+      }
+
+      // Obtendo todos os usuários salvos
+      const users = await AsyncStorage.getItem("users");
+      if (!users) {
+        alert("Erro ao recuperar usuários!");
+        return;
+      }
+
+      let usersList = JSON.parse(users);
+      let userIndex = usersList.findIndex((user) => user.email === loggedInEmail);
+
+      if (userIndex === -1) {
+        alert("Usuário não encontrado!");
+        return;
+      }
+
+      // Adicionando o novo filme ao usuário logado
+      let userMovies = usersList[userIndex].movies || [];
+      const newMovie = {
+        ...movieData,
+        image: movieImages[movieData.title] || require("../../assets/vader.png"),
+      };
+
+      userMovies.push(newMovie);
+      usersList[userIndex].movies = userMovies;
+
+      // Salvando novamente os usuários com a nova lista de filmes
+      await AsyncStorage.setItem("users", JSON.stringify(usersList));
+
+      // Atualizando a interface
+      setMovieList(userMovies);
+      setMovieTitle(""); // Limpar o campo de busca
     } catch (error) {
       console.error("Erro ao buscar filme:", error);
       alert("Erro ao buscar filme. Tente novamente!");

@@ -21,18 +21,23 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async () => {
-        const user = await AsyncStorage.getItem("user");
-        if (!user) {
+        const users = await AsyncStorage.getItem("users");
+        if (!users) {
             setErrorMessage("Usuário não encontrado!");
             return;
         }
-        const userJson = JSON.parse(user);
-        if (userJson.email === email && userJson.senha === senha) {
+        
+        const usersList = JSON.parse(users);
+        const user = usersList.find((user) => user.email === email && user.senha === senha);
+    
+        if (user) {
+            await AsyncStorage.setItem("loggedInEmail", email); // 🔥 Armazena o email do usuário logado
             navigation.navigate("Main");
         } else {
             setErrorMessage("Email ou senha incorretos!");
         }
     };
+    
 
     const handleRegister = () => {
         navigation.navigate("Cadastro");

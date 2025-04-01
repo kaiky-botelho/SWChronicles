@@ -12,9 +12,7 @@ export default function Splash() {
   }
 
 
-  return (
-      
-      
+  return (  
     <View style={styles.fundo}> 
       <Container>
         <Image style={styles.image}

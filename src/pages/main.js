@@ -16,15 +16,22 @@ export default function Main() {
 
   useEffect(() => {
     const getUser = async () => {
-      const user = await AsyncStorage.getItem("user");
-      if (user) {
-        const userJson = JSON.parse(user);
-        setNome(userJson.nome);
-      }
+        const loggedInEmail = await AsyncStorage.getItem("loggedInEmail"); // 🔥 Obtendo o email do usuário logado
+        if (loggedInEmail) {
+            const users = await AsyncStorage.getItem("users");
+            if (users) {
+                const usersList = JSON.parse(users);
+                const user = usersList.find((user) => user.email === loggedInEmail); // 🔥 Encontrando o usuário correto pelo email
+                if (user) {
+                    setNome(user.nome);
+                }
+            }
+        }
     };
 
     getUser();
-  }, []); // hook useEffect funciona corretamente para pegar o nome
+}, []);
+
 
   const navigation = useNavigation();
 
