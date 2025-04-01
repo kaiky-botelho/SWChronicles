@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Icon from "@expo/vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import api from "../service/api";
+import api from "../service/api";  // Importando a API do serviço
 import {
   ContainerScroll,
   Input,
@@ -11,8 +11,13 @@ import {
   SearchContainer,
   SubmitButton,
   MovieInfoContainer,
-  MovieInfoText,
+  ItemTitle,
   FilmeImage,
+  ItemContainerText,
+  ItemSubTitle,
+  ItemText,
+  MoreButton,
+  MoreButtonText,
 } from "../styles";
 
 const movieImages = {
@@ -32,7 +37,7 @@ const movieImages = {
 export const Films = () => {
   const navigation = useNavigation();
   const [movieTitle, setMovieTitle] = useState("");
-  const [movieList, setMovieList] = useState([]); // Agora é uma lista
+  const [movieList, setMovieList] = useState([]);
 
   const handleList = () => {
     navigation.navigate("FilmsList");
@@ -42,10 +47,12 @@ export const Films = () => {
     if (!movieTitle.trim()) return;
 
     try {
+      // Fazendo requisição para a API
       const response = await api.get(`/films/?search=${movieTitle}`);
-      const movieData = response.data.results[0];
+      const movieData = response.data.results[0]; // Pegando o primeiro filme encontrado
 
       if (movieData) {
+        // Armazenando o filme no AsyncStorage
         await AsyncStorage.setItem("savedMovie", JSON.stringify(movieData));
 
         const newMovie = {
@@ -53,8 +60,8 @@ export const Films = () => {
           image: movieImages[movieData.title] || require("../../assets/vader.png"),
         };
 
-        setMovieList((prevMovies) => [...prevMovies, newMovie]); // Adiciona novo filme à lista
-        setMovieTitle(""); // Limpa o campo de busca
+        setMovieList((prevMovies) => [...prevMovies, newMovie]);
+        setMovieTitle(""); // Limpar o campo de busca
       } else {
         alert("Filme não encontrado!");
       }
@@ -84,10 +91,26 @@ export const Films = () => {
       {movieList.map((movie, index) => (
         <MovieInfoContainer key={index}>
           <FilmeImage source={movie.image} resizeMode="contain" />
-          <MovieInfoText>Título: {movie.title}</MovieInfoText>
-          <MovieInfoText>Diretor: {movie.director}</MovieInfoText>
-          <MovieInfoText>Produtor: {movie.producer}</MovieInfoText>
-          <MovieInfoText>Data de lançamento: {movie.release_date}</MovieInfoText>
+          <ItemTitle>{movie.title}</ItemTitle>
+          <ItemContainerText>
+            <ItemSubTitle>Diretor: </ItemSubTitle> <ItemText>{movie.director}</ItemText>
+          </ItemContainerText>
+          <ItemContainerText>
+            <ItemSubTitle>Produtor: </ItemSubTitle> <ItemText>{movie.producer}</ItemText>
+          </ItemContainerText>
+          <ItemContainerText>
+            <ItemSubTitle>Data de Lançamento: </ItemSubTitle> <ItemText>{movie.release_date}</ItemText>
+          </ItemContainerText>
+
+          <MoreButton
+            onPress={() =>
+              navigation.navigate("FilmsDetails", {
+                movie: movie, 
+              })
+            }
+          >
+            <MoreButtonText>Ver Mais</MoreButtonText>
+          </MoreButton>
         </MovieInfoContainer>
       ))}
     </ContainerScroll>

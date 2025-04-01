@@ -10,6 +10,7 @@ import PlanetsList from "./pages/planetsList";
 
 import Films from "./pages/films";
 import FilmsList from "./pages/filmsList";
+import FilmsDetails from "./pages/filmsDetails";
 
 
 const Stack = createStackNavigator();
@@ -90,7 +91,7 @@ export default function Routes() {
         }}
       />
 
-      <Stack.Screen
+<Stack.Screen
         name="Films"
         component={Films}
         options={{
@@ -107,10 +108,9 @@ export default function Routes() {
           },
         }}
       />
-
       <Stack.Screen
-        name="FilmsList"
-        component={FilmsList}
+        name="FilmsDetails"
+        component={FilmsDetails}
         options={{
           headerTitle: () => (
             <Image

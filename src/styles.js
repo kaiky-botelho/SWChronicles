@@ -160,35 +160,35 @@ export const TextButtonImage = styled.Text`
 `;
 
 // Itens Adicionados
-export const ContainerItem = styled.View`
-  align-items: center;
-  margin: 0 20px 30px;
-  border-width: 2px;
-  border-color: #394F9A;
-  padding: 10px;
-`;
+// export const ContainerItem = styled.View`
+//   align-items: center;
+//   margin: 0 20px 30px;
+//   border-width: 2px;
+//   border-color: #394F9A;
+//   padding: 10px;
+// `;
 
-export const PlanetInfoContainer = styled.View`
-  flex: 1;
-  padding: 20px;
-  background-color: #FFFBEC;
-  border: 2px solid #394F9A;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  max-width: 300px;
-`;
+// export const PlanetInfoContainer = styled.View`
+//   flex: 1;
+//   padding: 20px;
+//   background-color: #FFFBEC;
+//   border: 2px solid #394F9A;
+//   border-radius: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 10px;
+//   max-width: 300px;
+// `;
 
-export const PlanetInfoText = styled.Text` 
-  font-size: 18px;
-  color: #394F9A;
-  font-weight: bold;
-  margin-bottom: 10px;
-  align-items: center;
-`;
+// export const PlanetInfoText = styled.Text` 
+//   font-size: 18px;
+//   color: #394F9A;
+//   font-weight: bold;
+//   margin-bottom: 10px;
+//   align-items: center;
+// `;
 export const MovieInfoContainer = styled.View`
   padding: 20px;
   background-color: #FFFBEC;
@@ -198,20 +198,83 @@ export const MovieInfoContainer = styled.View`
   width: 100%;
   max-width: 350px; 
   align-self: stretch; 
+  display: flex;
+  
 `;
 
+export const ItemContainerText = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  `;
 
+export const ItemTitle = styled.Text` 
+  font-size: 24px;
+  color: #394F9A;
+  font-weight: 900;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase
+  `;
 
-export const MovieInfoText = styled.Text` 
-  font-size: 18px;
+export const ItemSubTitle = styled.Text`
+  font-size: 20px; 
   color: #394F9A;
   font-weight: bold;
-  margin-bottom: 30px;
-`;
+  margin-bottom: 10px;
+  `;
+
+export const ItemText = styled.Text`
+  font-size: 16px;
+  color: #2d2d2d;
+  font-weight: 500;
+  margin-bottom: 10px;
+  `;
 
 export const FilmeImage = styled.Image`
+display: flex;
   width: 100%;
-  max-width: 280px;
+  max-width: 300px;
   height: 350px; 
   border-radius: 10px;
+  align-items: center;
+`;
+
+export const MoreButton = styled.TouchableOpacity`
+  background-color: #394F9A;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+`;
+
+export const MoreButtonText = styled.Text`
+
+  color: #FFFBEC;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const OpeningCrawlTittle = styled.Text`
+  font-size: 28px;
+  color: #394F9A;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const OpeningCrawlText = styled.Text`
+  font-size: 20px;
+  color: #2d2d2d;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px;
+`;
+
+export const FineLine = styled.View`
+  border-bottom-width: 2px;
+  border-color: #394F9A;
+  margin: 10px 0;
 `;
