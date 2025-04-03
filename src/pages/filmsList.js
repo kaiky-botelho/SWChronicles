@@ -9,7 +9,7 @@ export default function FilmsList() {
   React.useEffect(() => {
     async function fetchFilms() {
       try {
-        const response = await api.get("films/");
+        const response = await api.get("film/");
         setFilms(response.data.results);
         setLoading(false);
       } catch (error) {
@@ -33,10 +33,10 @@ export default function FilmsList() {
       ) : (
         <FlatList
           data={films}
-          keyExtractor={(item) => item.title}
+          keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.title}>{item.name}</Text>
             </View>
           )}
         />

@@ -5,7 +5,7 @@ import { ContainerScroll, FilmeImage, ItemTitle, ItemContainerText, ItemSubTitle
 
 export default function FilmsDetails() {
     const route = useRoute();
-    const { movie } = route.params; // Acessa os dados passados pela navegação
+    const { movie } = route.params; 
 
     return (
         <Container style={styles.container}>

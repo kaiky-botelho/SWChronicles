@@ -20,7 +20,6 @@ import {
   MoreButtonText,
 } from "../styles";
 
-// Mapeando imagens dos filmes
 const movieImages = {
   "A New Hope": require("../../assets/movies/a-new-hope.jpg"),
   "The Empire Strikes Back": require("../../assets/movies/the-empire-strikes-back.jpg"),
@@ -35,7 +34,6 @@ export const Films = () => {
   const [movieTitle, setMovieTitle] = useState("");
   const [movieList, setMovieList] = useState([]);
 
-  // Carregar filmes do usuário logado ao entrar na tela
   useEffect(() => {
     const loadMovies = async () => {
       const loggedInEmail = await AsyncStorage.getItem("loggedInEmail");
@@ -63,23 +61,20 @@ export const Films = () => {
     if (!movieTitle.trim()) return;
 
     try {
-      // Fazendo requisição para a API
       const response = await api.get(`/films/?search=${movieTitle}`);
-      const movieData = response.data.results[0]; // Pegando o primeiro filme encontrado
-
+      const movieData = response.data.results[0]; 
       if (!movieData) {
         alert("Filme não encontrado!");
         return;
       }
 
-      // Obtendo o usuário logado
       const loggedInEmail = await AsyncStorage.getItem("loggedInEmail");
       if (!loggedInEmail) {
         alert("Nenhum usuário logado!");
         return;
       }
 
-      // Obtendo todos os usuários salvos
+      
       const users = await AsyncStorage.getItem("users");
       if (!users) {
         alert("Erro ao recuperar usuários!");
@@ -94,7 +89,6 @@ export const Films = () => {
         return;
       }
 
-      // Adicionando o novo filme ao usuário logado
       let userMovies = usersList[userIndex].movies || [];
       const newMovie = {
         ...movieData,
@@ -104,12 +98,11 @@ export const Films = () => {
       userMovies.push(newMovie);
       usersList[userIndex].movies = userMovies;
 
-      // Salvando novamente os usuários com a nova lista de filmes
       await AsyncStorage.setItem("users", JSON.stringify(usersList));
 
-      // Atualizando a interface
+
       setMovieList(userMovies);
-      setMovieTitle(""); // Limpar o campo de busca
+      setMovieTitle(""); 
     } catch (error) {
       console.error("Erro ao buscar filme:", error);
       alert("Erro ao buscar filme. Tente novamente!");

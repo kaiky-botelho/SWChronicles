@@ -5,8 +5,8 @@ import Splash from "./pages/splash";
 import Login from "./pages/login";
 import Cadastro from "./pages/cadastro";
 import Main from "./pages/main";
-import Planets from "./pages/planets";
-import PlanetsList from "./pages/planetsList";
+
+import Spaceships from "./pages/spaceships";
 
 import Films from "./pages/films";
 import FilmsList from "./pages/filmsList";
@@ -56,26 +56,10 @@ export default function Routes() {
           },
         }}
       />
-      <Stack.Screen
-        name="Planets"
-        component={Planets}
-        options={{
-          headerTitle: () => (
-            <Image
-              source={require("../assets/logo.png")}
-              style={{ width: 100, height: 40, resizeMode: "contain" }}
-            />
-          ),
-          headerTitleAlign: "center",
-          headerTintColor: "#FFFBEC",
-          headerStyle: {
-            backgroundColor: "#394F9A",
-          },
-        }}
-      />
-      <Stack.Screen
-        name="PlanetsList"
-        component={PlanetsList}
+
+<Stack.Screen
+        name="Spaceships"
+        component={Spaceships}
         options={{
           headerTitle: () => (
             <Image

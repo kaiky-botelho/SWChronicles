@@ -12,16 +12,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Main() {
 
-  const [nome, setNome] = useState(""); // useState importado corretamente
+  const [nome, setNome] = useState(""); 
 
   useEffect(() => {
     const getUser = async () => {
-        const loggedInEmail = await AsyncStorage.getItem("loggedInEmail"); // 🔥 Obtendo o email do usuário logado
+        const loggedInEmail = await AsyncStorage.getItem("loggedInEmail");
         if (loggedInEmail) {
             const users = await AsyncStorage.getItem("users");
             if (users) {
                 const usersList = JSON.parse(users);
-                const user = usersList.find((user) => user.email === loggedInEmail); // 🔥 Encontrando o usuário correto pelo email
+                const user = usersList.find((user) => user.email === loggedInEmail);
                 if (user) {
                     setNome(user.nome);
                 }
@@ -36,7 +36,7 @@ export default function Main() {
   const navigation = useNavigation();
 
   const handlePlanets = () => {
-    navigation.navigate("Planets");
+    navigation.navigate("PlanetsList");
   };
 
   const handleMovies = () => {
