@@ -36,7 +36,7 @@ export default function Main() {
   const navigation = useNavigation();
 
   const handlePlanets = () => {
-    navigation.navigate("PlanetsList");
+    navigation.navigate("Planets");
   };
 
   const handleMovies = () => {
@@ -48,7 +48,7 @@ export default function Main() {
   };
 
   const handleSpaceships = () => {
-    navigation.navigate("Spaceships");
+    navigation.navigate("Starships");
   };
 
   const handleSpecies = () => {

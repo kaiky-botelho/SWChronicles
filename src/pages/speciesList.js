@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Text, View, Image, StyleSheet } from "react-native";
 import api from "../service/api";
 
-export default function FilmsList() {
-  const [films, setFilms] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+export default function SpeciesList() {
+  const [species, setSpecies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
-    async function fetchFilms() {
+  useEffect(() => {
+    async function fetchAllSpecies(url = "species/", accumulated = []) {
       try {
-        const response = await api.get("films/");
-        setFilms(response.data.results);
-        setLoading(false);
+        const response = await api.get(url);
+        const newSpecies = response.data.results;
+        const allSpecies = [...accumulated, ...newSpecies];
+
+        if (response.data.next) {
+          const nextPage = response.data.next.replace("https://swapi.dev/api/", "");
+          fetchAllSpecies(nextPage, allSpecies);
+        } else {
+          setSpecies(allSpecies);
+          setLoading(false);
+        }
       } catch (error) {
-        console.error(error);
+        console.error("Erro ao buscar espécies:", error);
         setLoading(false);
       }
     }
-    fetchFilms();
+
+    fetchAllSpecies();
   }, []);
 
   return (
@@ -28,11 +37,11 @@ export default function FilmsList() {
             source={require("../../assets/mandalorianoLoadingGif.gif")}
             style={styles.loadingGif}
           />
-          <Text style={styles.loadingText}>Carregando Filmes...</Text>
+          <Text style={styles.loadingText}>Carregando Espécies...</Text>
         </View>
       ) : (
         <FlatList
-          data={films}
+          data={species}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <View style={styles.item}>
@@ -53,13 +62,13 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   item: {
     padding: 15,
     borderBottomWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
   },
   title: {
     fontSize: 20,

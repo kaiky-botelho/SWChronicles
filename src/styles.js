@@ -191,7 +191,7 @@ export const PlanetInfoText = styled.Text`
   align-items: center;
 `;
 
-export const MovieInfoContainer = styled.View`
+export const InfoContainer = styled.View`
   padding: 20px;
   background-color: #FFFBEC;
   border: 2px solid #394F9A;

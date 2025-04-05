@@ -2,23 +2,33 @@ import React from "react";
 import { FlatList, Text, View, Image, StyleSheet } from "react-native";
 import api from "../service/api";
 
-export default function FilmsList() {
-  const [films, setFilms] = React.useState([]);
+export default function PlanetsList() {
+  const [planets, setPlanets] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    async function fetchFilms() {
+    async function fetchAllPlanets(url = "planets/", accumulated = []) {
       try {
-        const response = await api.get("films/");
-        setFilms(response.data.results);
-        setLoading(false);
+        const response = await api.get(url);
+        const newPlanets = response.data.results;
+        const allPlanets = [...accumulated, ...newPlanets];
+  
+        if (response.data.next) {
+          const nextPage = response.data.next.replace("https://swapi.dev/api/", "");
+          await fetchAllPlanets(nextPage, allPlanets); 
+        } else {
+          setPlanets(allPlanets);
+          setLoading(false);
+        }
       } catch (error) {
-        console.error(error);
+        console.error("Erro ao buscar planetas:", error);
         setLoading(false);
       }
     }
-    fetchFilms();
+  
+    fetchAllPlanets();
   }, []);
+  
 
   return (
     <View style={styles.container}>
@@ -28,11 +38,11 @@ export default function FilmsList() {
             source={require("../../assets/mandalorianoLoadingGif.gif")}
             style={styles.loadingGif}
           />
-          <Text style={styles.loadingText}>Carregando Filmes...</Text>
+          <Text style={styles.loadingText}>Carregando Planetas...</Text>
         </View>
       ) : (
         <FlatList
-          data={films}
+          data={planets}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <View style={styles.item}>
@@ -53,13 +63,13 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   item: {
     padding: 15,
     borderBottomWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
   },
   title: {
     fontSize: 20,
