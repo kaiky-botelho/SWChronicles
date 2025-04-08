@@ -5,7 +5,7 @@ import { ContainerScroll, FilmeImage, ItemTitle, ItemContainerText, ItemSubTitle
 
 export default function FilmsDetails() {
     const route = useRoute();
-    const { movie } = route.params; 
+    const { movie } = route.params; // Acessa os dados passados pela navegação
 
     return (
         <Container style={styles.container}>
@@ -45,5 +45,3 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFBEC",
     },
 });
-
-

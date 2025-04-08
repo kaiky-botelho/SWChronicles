@@ -28,15 +28,15 @@ export default function FilmsList() {
             source={require("../../assets/mandalorianoLoadingGif.gif")}
             style={styles.loadingGif}
           />
-          <Text style={styles.loadingText}>Carregando Filmes...</Text>
+          <Text style={styles.loadingText}>Carregando...</Text>
         </View>
       ) : (
         <FlatList
           data={films}
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.title}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.title}>{item.title}</Text>
             </View>
           )}
         />
